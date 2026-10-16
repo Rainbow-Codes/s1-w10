@@ -16,7 +16,9 @@ public class Greetings2 extends JPanel {
    }
    
    public void paintComponent (Graphics g) {
-      this.newDrawRect2(g,20,20,100,100);
+      this.newDrawRect(g,20,20,100,100);
+      this.newDrawRect2(g,25,25,125,125);
+      this.safeDrawRect(g,50,50,150,150);
    }
    
    
@@ -38,5 +40,18 @@ public class Greetings2 extends JPanel {
       g.drawLine(brx, bry, tlx, bry);
    }
 
+   public void safeDrawRect(Graphics g, int tlx, int tly, int brx, int bry){
+      int maxX = this.getSize().width;
+      int maxY = this.getSize().height;
+
+      if(tlx >=0 && tly >= 0 && brx <= maxX && bry <= maxY)
+       this.newDrawRect2(g,tlx,tly,brx,bry);  
+      else
+         System.out.println("Error, rectangle outside of expected Range.");
+   }
+
+   public static void main(String Args[]){
+      Greetings2 g2 = new Greetings2();
+   }
    
 }
